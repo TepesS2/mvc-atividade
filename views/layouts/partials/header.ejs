@@ -1,0 +1,20 @@
+<header>
+    <div class="header-content">
+        <div id="logo">
+            <img src="<%- locals.layoutVariables.img %>logo3.png" alt="Logo">  <h1 class="logo-title">Check List De Tarefas</h1>
+        </div>
+        <div id="display"></div>
+        <div id="user">
+            <% if(locals.layoutVariables.user){ %>
+                <p>
+                    <i class="bi-person" style="font-size: 3rem; color: #000000; font-family: 'Times New Roman', Times, serif;"></i>
+                    <a href="/logout">logout</a>
+                    <a href="/usuario/perfil/<%- locals.layoutVariables.user.id_usuario %>"><%- locals.layoutVariables.user.nome %></a>
+                    <a href="/logout" class="btn-primary">
+                        <i class="bi-arrow-right" style="font-size: 2.5rem; color: #1D62DB; font: sans-serif;"></i>
+                    </a>
+                </p>
+            <%}%>        
+        </div>
+    </div>
+</header>
