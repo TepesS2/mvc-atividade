@@ -26,25 +26,36 @@ async function addTarefa(req, res) {
 } 
 
 
-async function deleteTarefa(req, res){
-	let msg = null;
-	if(await Tarefa.deleteTarefa(req.params.idTarefa)){
-		msg = {
-			class: "alert-success",
-			msg: "Tarefa excluida com extremo sucesso!"
-		}
-		req.session.msg=msg;
-		res.redirect("/tarefas");
-	}else{
-		msg = {
-			class: "alert-danger",
-			msg: "A exclusão falhou miseravelmente!"
-		}
-		req.session.msg=msg
-		res.redirect("/tarefas");
-	}
+async function deleteTarefa(req, res) {
+    const id_tarefa = req.params.idTarefa;
+
+    if (id_tarefa) {
+        let msg = null;
+        if (await Tarefa.deleteTarefa(id_tarefa)) {
+            msg = {
+                class: "alert-success",
+                msg: "Tarefa excluída com sucesso!"
+            }
+            req.session.msg = msg;
+            res.redirect("/tarefas");
+        } else {
+            msg = {
+                class: "alert-danger",
+                msg: "A exclusão falhou miseravelmente!"
+            }
+            req.session.msg = msg
+            res.redirect("/tarefas");
+        }
+    } else {
+        // Lidar com o caso em que id_tarefa não está definido
+        res.status(400).send('ID da tarefa não fornecido');
+    }
 }
 
 
+async function editTarefa(req, res){
 
-module.exports = { getTarefas, getTarefa, addTarefa, deleteTarefa,};
+}
+
+
+module.exports = { getTarefas, getTarefa, addTarefa, deleteTarefa, editTarefa};

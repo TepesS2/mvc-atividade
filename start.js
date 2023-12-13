@@ -81,7 +81,10 @@ app.get('/usuario/editar/:idUsuario', (req,res)=>{
 	usuarioController.editar(req, res);
 });
 
-
+app.get('/tarefa/delete/:idTarefa', tarefaController.deleteTarefa);
+//app.put('/tarefa', tarefaController.updateTarefa);
+app.get('/tarefa/edit', tarefaController.editTarefa);
+//app.get('/tarefa/', tarefaController.searchTarefa);
 
 app.listen(port, () => { 
 console.log(`Servidor rodando em http://localhost:${port}`);
